@@ -1,0 +1,25 @@
+# Claude Code
+.claude/
+
+# Node
+node_modules/
+dist/
+.astro/
+
+# Środowisko
+.env
+.env.local
+.env.production
+
+# Edytor
+.vscode/
+.idea/
+*.swp
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logi
+*.log
+npm-debug.log*
