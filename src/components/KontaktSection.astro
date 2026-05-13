@@ -1,0 +1,43 @@
+---
+const email = 'kontakt@novaflowdesign.pl';
+---
+
+<section id="kontakt" class="mx-auto max-w-3xl px-6 py-24 md:py-36 text-center">
+  <p class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Napisz do mnie</p>
+  <h2 class="font-display text-3xl md:text-5xl font-bold text-white">Kontakt</h2>
+  <p class="mt-4 text-lg text-white/55 leading-relaxed max-w-xl mx-auto">
+    Masz pomysł na projekt? Chcesz odświeżyć istniejącą stronę? Napisz — chętnie porozmawiam i bezpłatnie wycenię Twój projekt.
+  </p>
+
+  <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+    <a
+      href={`mailto:${email}`}
+      class="btn-primary inline-flex items-center gap-2.5 px-8 py-4 text-base rounded-xl"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+      Wyślij e-mail
+    </a>
+    <a
+      href="#faq"
+      class="btn-outline inline-flex items-center gap-2 px-8 py-4 text-base rounded-xl"
+    >
+      Przejrzyj FAQ
+    </a>
+  </div>
+
+  <div class="mt-10 p-6 rounded-2xl bg-surface-card border border-surface-border inline-block w-full max-w-sm text-left mx-auto">
+    <p class="text-xs font-medium uppercase tracking-widest text-white/30 mb-2">Adres e-mail</p>
+    <a
+      href={`mailto:${email}`}
+      class="text-lg font-medium text-white hover:text-accent transition-colors"
+    >
+      {email}
+    </a>
+  </div>
+
+  <p class="mt-5 text-sm text-white/30">
+    Zazwyczaj odpisuję w ciągu 24 godzin w dni robocze.
+  </p>
+</section>

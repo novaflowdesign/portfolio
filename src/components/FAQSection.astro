@@ -1,0 +1,77 @@
+---
+const faqs = [
+  {
+    question: 'Jak wygląda proces współpracy?',
+    answer: 'Współpracę zaczynamy od rozmowy, podczas której poznajemy Twoje potrzeby, cele oraz oczekiwania wobec strony. Następnie przygotowuję koncepcję i czekam na Twoje uwagi. Po akceptacji przechodzę do realizacji, dbając o każdy detal — zarówno wizualny, jak i techniczny.',
+  },
+  {
+    question: 'Ile trwa realizacja projektu?',
+    answer: 'Prosta strona wizytówkowa to zazwyczaj 1–2 tygodnie. Bardziej rozbudowane projekty zajmują 3–6 tygodni. Czas realizacji zależy też od tego, jak szybko dostarczysz materiały — treści, zdjęcia, logotyp.',
+  },
+  {
+    question: 'Czy strona będzie działać na urządzeniach mobilnych?',
+    answer: 'Tak, wszystkie strony są w pełni responsywne — wyglądają i działają dobrze na smartfonach, tabletach i komputerach. Projektuję metodą mobile-first, co gwarantuje dobre doświadczenie na każdym urządzeniu.',
+  },
+  {
+    question: 'Ile kosztuje strona internetowa?',
+    answer: 'Cena zależy od zakresu projektu. Każdy projekt wyceniam indywidualnie po rozmowie o potrzebach — napisz do mnie, a otrzymasz bezpłatną wycenę bez żadnych zobowiązań.',
+  },
+  {
+    question: 'Czy zadbasz o SEO?',
+    answer: 'Każda strona zawiera podstawową optymalizację SEO: poprawną strukturę nagłówków, meta tagi, Open Graph, mapę witryny oraz szybkie ładowanie. Na życzenie mogę przeprowadzić bardziej rozbudowaną optymalizację pod konkretne frazy kluczowe.',
+  },
+  {
+    question: 'Czy będę mógł samodzielnie edytować treści?',
+    answer: 'Zależy od wybranego rozwiązania. Dla prostych stron mogę przygotować edytowalne pliki tekstowe lub zintegrować prosty CMS. Omówimy to przy planowaniu projektu.',
+  },
+];
+---
+
+<section id="faq" class="mx-auto max-w-3xl px-6 py-24 md:py-36">
+  <header class="mb-14">
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Pytania i odpowiedzi</p>
+    <h2 class="font-display text-3xl md:text-5xl font-bold text-white">Najczęściej zadawane pytania</h2>
+    <p class="mt-4 text-white/55">
+      Masz pytania? W naszej sekcji FAQ znajdziesz szybkie odpowiedzi.
+    </p>
+  </header>
+
+  <div class="divide-y divide-surface-border" id="faq-list">
+    {faqs.map((faq, i) => (
+      <div class="faq-item py-6" data-index={i}>
+        <button class="faq-trigger flex items-center justify-between gap-6 py-1">
+          <span class="faq-question text-base font-semibold text-white text-left">
+            {faq.question}
+          </span>
+          <span class="faq-icon-ring shrink-0 w-7 h-7 rounded-full border border-surface-border flex items-center justify-center">
+            <svg class="faq-icon w-3.5 h-3.5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14M5 12h14" />
+            </svg>
+          </span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-inner">
+            <p class="faq-answer text-white/55 leading-relaxed text-sm pt-4 pr-12">{faq.answer}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.faq-item').forEach((item) => {
+    const trigger = item.querySelector<HTMLElement>('.faq-trigger');
+
+    trigger?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Zamknij wszystkie inne
+      document.querySelectorAll('.faq-item.open').forEach((other) => {
+        if (other !== item) other.classList.remove('open');
+      });
+
+      item.classList.toggle('open', !isOpen);
+    });
+  });
+</script>

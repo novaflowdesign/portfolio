@@ -4,8 +4,9 @@ import '@fontsource/inter/300.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
-import '@fontsource/playfair-display/400.css';
-import '@fontsource/playfair-display/700.css';
+import '@fontsource/unbounded/400.css';
+import '@fontsource/unbounded/700.css';
+import '@fontsource/unbounded/800.css';
 
 interface Props {
   title: string;
@@ -55,9 +56,24 @@ const fullTitle = title === 'NovaFlowDesign' ? title : `${title} | NovaFlowDesig
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
   </body>
+
+  <script>
+    /* Przechwytuje kliknięcia w linki #hash — płynne przewijanie bez hash w URL */
+    document.addEventListener('click', (e) => {
+      const anchor = (e.target as Element).closest('a[href^="#"]');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      history.replaceState(null, '', window.location.pathname);
+    });
+  </script>
 </html>

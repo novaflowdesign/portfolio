@@ -1,86 +1,141 @@
 ---
 const navLinks = [
-  { href: '/realizacje', label: 'Realizacje' },
-  { href: '/oferta', label: 'Oferta' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/kontakt', label: 'Kontakt' },
+  { href: '#novaflow',  label: 'NovaFlowDesign', section: 'novaflow' },
+  { href: '#realizacje',label: 'Realizacje',      section: 'realizacje' },
+  { href: '#oferta',    label: 'Oferta',           section: 'oferta' },
+  { href: '#faq',       label: 'FAQ',              section: 'faq' },
+  { href: '#kontakt',   label: 'Kontakt',          section: 'kontakt' },
 ];
-
-const pathname = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 border-b border-surface-border bg-surface/80 backdrop-blur-md">
-  <div class="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-    <a href="/" class="font-display text-xl font-bold tracking-tight text-white hover:text-accent transition-colors">
-      NovaFlow<span class="text-accent">Design</span>
-    </a>
+<!-- Logo — lewa krawędź viewportu -->
+<a
+  href="/"
+  class="fixed top-7 left-10 z-50 flex items-center"
+  aria-label="NovaFlowDesign"
+>
+  <img src="/logo.png" alt="NovaFlowDesign" class="h-9 w-auto" />
+</a>
 
-    <!-- Desktop nav -->
-    <nav class="hidden md:flex items-center gap-8" aria-label="Nawigacja główna">
-      {navLinks.map(({ href, label }) => (
-        <a
-          href={href}
-          class:list={[
-            'text-sm font-medium transition-colors',
-            pathname.startsWith(href)
-              ? 'text-white'
-              : 'text-white/60 hover:text-white',
-          ]}
-        >
-          {label}
-        </a>
-      ))}
-    </nav>
-
-    <!-- Mobile menu button -->
-    <button
-      id="menu-toggle"
-      class="md:hidden p-2 text-white/60 hover:text-white transition-colors"
-      aria-label="Otwórz menu"
-      aria-expanded="false"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-  </div>
-
-  <!-- Mobile nav -->
-  <nav
-    id="mobile-menu"
-    class="hidden md:hidden border-t border-surface-border"
-    aria-label="Nawigacja mobilna"
-  >
-    <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4">
-      {navLinks.map(({ href, label }) => (
-        <a
-          href={href}
-          class:list={[
-            'text-sm font-medium transition-colors',
-            pathname.startsWith(href)
-              ? 'text-white'
-              : 'text-white/60 hover:text-white',
-          ]}
-        >
-          {label}
-        </a>
-      ))}
-    </div>
+<!-- Floating pill — wycentrowany w viewporcie (desktop) -->
+<div class="fixed top-7 left-1/2 -translate-x-1/2 z-50 hidden md:flex items-center bg-surface/85 backdrop-blur-xl border border-surface-border rounded-2xl px-2 py-2 gap-1">
+  <nav class="flex items-center gap-1" aria-label="Nawigacja główna">
+    {navLinks.map(({ href, label, section }) => (
+      <a
+        href={href}
+        data-section={section}
+        data-active="false"
+        class="nav-link relative px-4 py-2 text-[15px] font-medium rounded-xl"
+      >
+        {label}
+        <span class="nav-pip"></span>
+      </a>
+    ))}
   </nav>
-</header>
+</div>
+
+<!-- CTA — prawa krawędź viewportu (desktop) -->
+<div class="fixed top-7 right-10 z-50 hidden md:block">
+  <a
+    href="#kontakt"
+    class="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm rounded-xl"
+  >
+    Skontaktuj się
+    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  </a>
+</div>
+
+<!-- Hamburger — prawa krawędź (mobile) -->
+<button
+  id="menu-toggle"
+  class="fixed top-7 right-10 z-50 md:hidden p-2.5 bg-surface-elevated/90 backdrop-blur-xl border border-surface-border rounded-xl text-white/60 hover:text-white transition-colors"
+  aria-label="Otwórz menu"
+  aria-expanded="false"
+>
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path id="icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    <path id="icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+</button>
+
+<!-- Mobile dropdown -->
+<div
+  id="mobile-menu"
+  class="fixed top-24 left-4 right-4 z-50 hidden md:hidden bg-surface-elevated/95 backdrop-blur-xl border border-surface-border rounded-2xl overflow-hidden shadow-2xl"
+>
+  <nav class="flex flex-col p-3 gap-1" aria-label="Nawigacja mobilna">
+    {navLinks.map(({ href, label }) => (
+      <a
+        href={href}
+        class="mobile-link px-4 py-3 text-sm font-medium text-white/70 hover:text-white hover:bg-surface-card rounded-xl transition-colors"
+      >
+        {label}
+      </a>
+    ))}
+    <a
+      href="#kontakt"
+      class="mobile-link btn-primary mt-1 px-4 py-3 text-sm text-center rounded-xl"
+    >
+      Skontaktuj się →
+    </a>
+  </nav>
+</div>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
+  /* ── Mobile menu ──────────────────────────── */
+  const toggle    = document.getElementById('menu-toggle');
+  const menu      = document.getElementById('mobile-menu');
+  const iconOpen  = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  function closeMenu() {
+    menu?.classList.add('hidden');
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+  }
 
   toggle?.addEventListener('click', () => {
     const isOpen = !menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden', isOpen);
-    iconOpen?.classList.toggle('hidden', !isOpen);
-    iconClose?.classList.toggle('hidden', isOpen);
-    toggle.setAttribute('aria-expanded', String(!isOpen));
+    if (isOpen) {
+      closeMenu();
+    } else {
+      menu?.classList.remove('hidden');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      toggle?.setAttribute('aria-expanded', 'true');
+    }
   });
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+
+  /* ── Active section (scroll-based) ───────── */
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link');
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
+
+  function setActive(id: string) {
+    navLinks.forEach(link => {
+      link.dataset.active = String(link.dataset.section === id);
+    });
+  }
+
+  function detectActive() {
+    const mid = window.innerHeight * 0.45;
+    let current = sections[0]?.id ?? '';
+    for (const s of sections) {
+      if (s.getBoundingClientRect().top <= mid) current = s.id;
+    }
+    setActive(current);
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { detectActive(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  detectActive(); // stan początkowy
 </script>

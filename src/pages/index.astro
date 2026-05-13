@@ -3,17 +3,25 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import Hero from '@components/Hero.astro';
+import NovaFlowSection from '@components/NovaFlowSection.astro';
 import ProjectsGrid from '@components/ProjectsGrid.astro';
+import OfertaSection from '@components/OfertaSection.astro';
+import FAQSection from '@components/FAQSection.astro';
+import KontaktSection from '@components/KontaktSection.astro';
 ---
 
 <BaseLayout
   title="NovaFlowDesign"
-  description="Tworzę nowoczesne strony internetowe dla firm i freelancerów. Szybkie, estetyczne i zoptymalizowane pod SEO."
+  description="Tworzymy strony, które dobrze wyglądają i jeszcze lepiej działają. Przemyślana struktura, estetyczny design i sprawne działanie."
 >
   <Header />
   <main>
     <Hero />
+    <NovaFlowSection />
     <ProjectsGrid />
+    <OfertaSection />
+    <FAQSection />
+    <KontaktSection />
   </main>
   <Footer />
 </BaseLayout>

@@ -8,24 +8,27 @@ const projects = allProjects
   .slice(0, 6);
 ---
 
-{projects.length > 0 ? (
-  <section class="mx-auto max-w-6xl px-6 py-20 md:py-32">
-    <div class="flex items-end justify-between mb-12">
-      <div>
-        <p class="text-sm font-medium uppercase tracking-widest text-accent mb-3">Portfolio</p>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Najnowsze realizacje</h2>
-      </div>
+<section id="realizacje" class="mx-auto max-w-6xl px-6 py-24 md:py-36">
+  <div class="text-center mb-14">
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Portfolio</p>
+    <h2 class="font-display text-3xl md:text-5xl font-bold text-white">Realizacje</h2>
+    <p class="mt-3 text-white/55 max-w-lg mx-auto">
+      Projekty oparte na przemyślanej strukturze i spójnym designie.
+    </p>
+    {projects.length > 0 && (
       <a
         href="/realizacje"
-        class="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-white/60 hover:text-white transition-colors"
+        class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-white/50 hover:text-white transition-colors"
       >
         Wszystkie projekty
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>
       </a>
-    </div>
+    )}
+  </div>
 
+  {projects.length > 0 ? (
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {projects.map((project) => (
         <ProjectCard
@@ -37,15 +40,7 @@ const projects = allProjects
         />
       ))}
     </div>
-
-    <div class="mt-10 text-center md:hidden">
-      <a href="/realizacje" class="text-sm font-medium text-white/60 hover:text-white transition-colors">
-        Wszystkie projekty →
-      </a>
-    </div>
-  </section>
-) : (
-  <section class="mx-auto max-w-6xl px-6 py-20 text-center">
-    <p class="text-white/40 text-sm">Projekty pojawią się wkrótce.</p>
-  </section>
-)}
+  ) : (
+    <p class="text-white/30 text-sm text-center">Projekty pojawią się wkrótce.</p>
+  )}
+</section>
