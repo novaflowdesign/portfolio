@@ -1,0 +1,89 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import Button from '@components/Button.astro';
+
+const faqs = [
+  {
+    question: 'Ile kosztuje strona internetowa?',
+    answer: 'Cena zależy od zakresu projektu. Prosta strona wizytówkowa to wydatek rzędu kilkuset złotych, rozbudowana witryna firmowa może kosztować więcej. Każdy projekt wyceniam indywidualnie po rozmowie o potrzebach — napisz do mnie, a otrzymasz bezpłatną wycenę.',
+  },
+  {
+    question: 'Jak długo trwa realizacja projektu?',
+    answer: 'Prosta strona wizytówkowa to zazwyczaj 1–2 tygodnie. Bardziej rozbudowane projekty zajmują 3–6 tygodni. Czas realizacji zależy też od tego, jak szybko dostarczysz materiały (treści, zdjęcia, logotyp).',
+  },
+  {
+    question: 'Czy strona będzie działać na urządzeniach mobilnych?',
+    answer: 'Tak, wszystkie strony, które tworzę, są w pełni responsywne — wyglądają i działają dobrze na smartfonach, tabletach i komputerach. Projektuję metodą mobile-first, co gwarantuje dobre doświadczenie na każdym urządzeniu.',
+  },
+  {
+    question: 'Czy zadbasz o SEO?',
+    answer: 'Każda strona zawiera podstawową optymalizację SEO: poprawną strukturę nagłówków, meta tagi, Open Graph, mapę witryny (sitemap.xml) i szybkie ładowanie. Na życzenie mogę przeprowadzić bardziej rozbudowaną optymalizację pod konkretne frazy kluczowe.',
+  },
+  {
+    question: 'Na jakim hostingu będzie strona?',
+    answer: 'Mogę wgrać stronę na Twój istniejący hosting (FTP) lub pomóc wybrać i skonfigurować nowy. Dla stron statycznych polecam rozwiązania jak OVH, Cloudflare Pages lub Vercel — szybkie, tanie i niezawodne.',
+  },
+  {
+    question: 'Czy będę mógł samodzielnie edytować treści na stronie?',
+    answer: 'Zależy od wybranego rozwiązania. Dla prostych stron mogę przygotować edytowalne pliki tekstowe lub zintegrować prosty CMS (np. Decap CMS). Omówimy to przy planowaniu projektu.',
+  },
+  {
+    question: 'Co potrzebuję przygotować przed startem projektu?',
+    answer: 'Idealnie: logotyp w dobrej jakości, treści (teksty o firmie, opis usług), zdjęcia oraz adres e-mail i dane kontaktowe. Jeśli nie masz materiałów, podpowiem jak je przygotować lub zaproponuję alternatywy.',
+  },
+  {
+    question: 'Czy oferujesz wsparcie po wdrożeniu strony?',
+    answer: 'Tak. W zależności od pakietu oferuję 30 lub 60 dni bezpłatnego wsparcia technicznego po wdrożeniu. Mogę też zaproponować stałą opiekę nad stroną w ramach abonamentu.',
+  },
+];
+---
+
+<BaseLayout
+  title="FAQ"
+  description="Najczęściej zadawane pytania dotyczące tworzenia stron internetowych — ceny, czas realizacji, SEO i wsparcie po wdrożeniu."
+>
+  <Header />
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-32">
+    <header class="mb-16">
+      <p class="text-sm font-medium uppercase tracking-widest text-accent mb-3">Pytania i odpowiedzi</p>
+      <h1 class="font-display text-4xl md:text-5xl font-bold text-white">FAQ</h1>
+      <p class="mt-4 text-lg text-white/60">
+        Odpowiedzi na najczęściej zadawane pytania. Nie znalazłeś odpowiedzi?{' '}
+        <a href="/kontakt" class="text-white/80 hover:text-white underline underline-offset-2 transition-colors">Napisz do mnie.</a>
+      </p>
+    </header>
+
+    <!-- Accordion -->
+    <div class="flex flex-col divide-y divide-surface-border">
+      {faqs.map((faq, i) => (
+        <details class="group py-6" id={`faq-${i}`}>
+          <summary class="flex items-start justify-between gap-4 cursor-pointer list-none">
+            <h2 class="text-base font-semibold text-white group-open:text-accent transition-colors pr-4">
+              {faq.question}
+            </h2>
+            <svg
+              class="w-5 h-5 text-white/40 shrink-0 mt-0.5 transition-transform duration-200 group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-4 text-white/60 leading-relaxed text-sm">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 pt-12 border-t border-surface-border text-center">
+      <p class="text-white/50 mb-6">Masz inne pytanie?</p>
+      <Button href="/kontakt" variant="primary" size="md">
+        Skontaktuj się
+      </Button>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

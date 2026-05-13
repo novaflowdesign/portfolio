@@ -1,0 +1,38 @@
+---
+import Button from '@components/Button.astro';
+---
+
+<section class="relative flex flex-col items-center justify-center text-center px-6 py-28 md:py-40">
+  <!-- Subtelny gradient w tle -->
+  <div
+    class="pointer-events-none absolute inset-0 overflow-hidden"
+    aria-hidden="true"
+  >
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-accent opacity-[0.04] blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-3xl mx-auto">
+    <p class="mb-4 text-sm font-medium uppercase tracking-widest text-accent">
+      Strony internetowe na zlecenie
+    </p>
+
+    <h1 class="font-display text-4xl md:text-6xl font-bold leading-tight text-white">
+      Tworzymy strony, które dobrze wyglądają
+      <span class="text-accent"> i jeszcze lepiej działają</span>
+    </h1>
+
+    <p class="mt-6 text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
+      Projektuję i wdrażam nowoczesne strony www dla firm, freelancerów i marek osobistych.
+      Szybko, estetycznie i z dbałością o każdy detal.
+    </p>
+
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <Button href="/kontakt" variant="primary" size="lg">
+        Skontaktuj się
+      </Button>
+      <Button href="/realizacje" variant="outline" size="lg">
+        Zobacz realizacje
+      </Button>
+    </div>
+  </div>
+</section>

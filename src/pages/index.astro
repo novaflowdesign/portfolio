@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import Hero from '@components/Hero.astro';
+import ProjectsGrid from '@components/ProjectsGrid.astro';
+---
+
+<BaseLayout
+  title="NovaFlowDesign"
+  description="Tworzę nowoczesne strony internetowe dla firm i freelancerów. Szybkie, estetyczne i zoptymalizowane pod SEO."
+>
+  <Header />
+  <main>
+    <Hero />
+    <ProjectsGrid />
+  </main>
+  <Footer />
+</BaseLayout>

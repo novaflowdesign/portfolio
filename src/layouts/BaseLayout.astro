@@ -1,0 +1,63 @@
+---
+import '@styles/global.css';
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/700.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og-default.jpg',
+  ogType = 'website',
+  canonical,
+} = Astro.props;
+
+const siteUrl = 'https://novaflowdesign.pl';
+const pageUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
+const fullTitle = title === 'NovaFlowDesign' ? title : `${title} | NovaFlowDesign`;
+---
+
+<!doctype html>
+<html lang="pl" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="NovaFlowDesign" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+  title="Realizacje"
+  description="Przegląd moich projektów — strony internetowe stworzone dla firm, freelancerów i marek osobistych."
+>
+  <Header />
+  <main class="mx-auto max-w-6xl px-6 py-20 md:py-32">
+    <header class="mb-16">
+      <p class="text-sm font-medium uppercase tracking-widest text-accent mb-3">Portfolio</p>
+      <h1 class="font-display text-4xl md:text-5xl font-bold text-white">Realizacje</h1>
+      <p class="mt-4 text-lg text-white/60 max-w-xl">
+        Projekty, przy których miałem przyjemność pracować. Każdy z nich to inna historia i inne wyzwania.
+      </p>
+    </header>
+
+    {projects.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            slug={project.id}
+            thumbnail={project.data.thumbnail}
+            tags={project.data.tags}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-white/40 text-sm">Projekty pojawią się wkrótce.</p>
+    )}
+  </main>
+  <Footer />
+</BaseLayout>
