@@ -8,18 +8,20 @@ const navLinks = [
 ];
 ---
 
-<!-- Logo — lewa krawędź viewportu -->
-<a
-  href="/"
-  class="fixed top-7 left-10 z-50 flex items-center"
-  aria-label="NovaFlowDesign"
->
-  <img src="/logo.png" alt="NovaFlowDesign" class="h-9 w-auto" />
-</a>
+<header class="fixed top-4 z-50 h-14 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-6xl flex items-center px-4 md:px-5 bg-surface-elevated/80 backdrop-blur-xl border border-surface-border rounded-2xl">
 
-<!-- Floating pill — wycentrowany w viewporcie (desktop) -->
-<div class="fixed top-7 left-1/2 -translate-x-1/2 z-50 hidden md:flex items-center bg-surface/85 backdrop-blur-xl border border-surface-border rounded-2xl px-2 py-2 gap-1">
-  <nav class="flex items-center gap-1" aria-label="Nawigacja główna">
+  <!-- Logo -->
+  <a href="/" class="flex items-center shrink-0" aria-label="NovaFlowDesign">
+    <!-- Mobile + tablet: obraz -->
+    <div class="xl:hidden">
+      <img src="/logo.png" alt="NovaFlowDesign" class="h-8 w-auto" />
+    </div>
+    <!-- Desktop: tekst -->
+    <span class="hidden xl:inline font-display font-bold text-lg tracking-tight text-gradient">NovaFlowDesign</span>
+  </a>
+
+  <!-- Nav — absolutnie wycentrowany w pasku -->
+  <nav class="absolute left-1/2 -translate-x-1/2 hidden xl:flex items-center gap-1" aria-label="Nawigacja główna">
     {navLinks.map(({ href, label, section }) => (
       <a
         href={href}
@@ -32,51 +34,52 @@ const navLinks = [
       </a>
     ))}
   </nav>
-</div>
 
-<!-- CTA — prawa krawędź viewportu (desktop) -->
-<div class="fixed top-7 right-10 z-50 hidden md:block">
-  <a
-    href="#kontakt"
-    class="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm rounded-xl"
-  >
-    Skontaktuj się
-    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-    </svg>
-  </a>
-</div>
+  <!-- Prawa strona -->
+  <div class="ml-auto flex items-center shrink-0">
+    <!-- CTA — desktop -->
+    <a
+      href="#kontakt"
+      class="btn-primary group hidden xl:inline-flex items-center gap-2 px-5 py-2.5 text-sm rounded-xl"
+    >
+      Skontaktuj się
+      <svg class="w-3.5 h-3.5 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </a>
 
-<!-- Hamburger — prawa krawędź (mobile) -->
-<button
-  id="menu-toggle"
-  class="fixed top-7 right-10 z-50 md:hidden p-2.5 bg-surface-elevated/90 backdrop-blur-xl border border-surface-border rounded-xl text-white/60 hover:text-white transition-colors"
-  aria-label="Otwórz menu"
-  aria-expanded="false"
->
-  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path id="icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    <path id="icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-  </svg>
-</button>
+    <!-- Hamburger — mobile + tablet -->
+    <button
+      id="menu-toggle"
+      class="xl:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.25 text-white/60 hover:text-white transition-colors rounded-xl"
+      aria-label="Otwórz menu"
+      aria-expanded="false"
+    >
+      <span class="block h-0.5 w-5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+      <span class="block h-0.5 w-5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+      <span class="block h-0.5 w-5 bg-current rounded-full transition-all duration-300 origin-center"></span>
+    </button>
+  </div>
 
-<!-- Mobile dropdown -->
+</header>
+
+<!-- Dropdown: top-4 (16px) + h-14 (56px) + 8px gap = 80px = top-20 -->
 <div
   id="mobile-menu"
-  class="fixed top-24 left-4 right-4 z-50 hidden md:hidden bg-surface-elevated/95 backdrop-blur-xl border border-surface-border rounded-2xl overflow-hidden shadow-2xl"
+  class="fixed top-20 z-50 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-6xl bg-surface-elevated/95 backdrop-blur-xl border border-surface-border rounded-2xl overflow-hidden shadow-2xl transition-all duration-200 ease-out opacity-0 -translate-y-2 pointer-events-none"
 >
   <nav class="flex flex-col p-3 gap-1" aria-label="Nawigacja mobilna">
     {navLinks.map(({ href, label }) => (
       <a
         href={href}
-        class="mobile-link px-4 py-3 text-sm font-medium text-white/70 hover:text-white hover:bg-surface-card rounded-xl transition-colors"
+        class="mobile-link px-4 py-3 text-sm font-medium text-white/70 hover:text-white hover:bg-surface-card rounded-xl transition-colors text-center"
       >
         {label}
       </a>
     ))}
     <a
       href="#kontakt"
-      class="mobile-link btn-primary mt-1 px-4 py-3 text-sm text-center rounded-xl"
+      class="mobile-link btn-primary mt-1 px-4 py-3 text-sm text-center rounded-xl sm:self-center sm:w-1/4 sm:min-w-fit"
     >
       Skontaktuj się →
     </a>
@@ -85,28 +88,35 @@ const navLinks = [
 
 <script>
   /* ── Mobile menu ──────────────────────────── */
-  const toggle    = document.getElementById('menu-toggle');
-  const menu      = document.getElementById('mobile-menu');
-  const iconOpen  = document.getElementById('icon-open');
-  const iconClose = document.getElementById('icon-close');
+  const toggle = document.getElementById('menu-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  const lines  = toggle?.querySelectorAll<HTMLSpanElement>('span');
+
+  function openMenu() {
+    if (!lines || !menu) return;
+    lines[0].style.transform = 'translateY(7px) rotate(45deg)';
+    lines[1].style.opacity   = '0';
+    lines[1].style.transform = 'scaleX(0)';
+    lines[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+    menu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+    menu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+    toggle?.setAttribute('aria-expanded', 'true');
+  }
 
   function closeMenu() {
-    menu?.classList.add('hidden');
-    iconOpen?.classList.remove('hidden');
-    iconClose?.classList.add('hidden');
+    if (!lines || !menu) return;
+    lines[0].style.transform = '';
+    lines[1].style.opacity   = '';
+    lines[1].style.transform = '';
+    lines[2].style.transform = '';
+    menu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+    menu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
     toggle?.setAttribute('aria-expanded', 'false');
   }
 
   toggle?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    if (isOpen) {
-      closeMenu();
-    } else {
-      menu?.classList.remove('hidden');
-      iconOpen?.classList.add('hidden');
-      iconClose?.classList.remove('hidden');
-      toggle?.setAttribute('aria-expanded', 'true');
-    }
+    const isOpen = menu?.classList.contains('opacity-100');
+    isOpen ? closeMenu() : openMenu();
   });
   document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
 
@@ -122,7 +132,7 @@ const navLinks = [
 
   function detectActive() {
     const mid = window.innerHeight * 0.45;
-    let current = sections[0]?.id ?? '';
+    let current = '';
     for (const s of sections) {
       if (s.getBoundingClientRect().top <= mid) current = s.id;
     }
@@ -137,5 +147,5 @@ const navLinks = [
     }
   }, { passive: true });
 
-  detectActive(); // stan początkowy
+  detectActive();
 </script>

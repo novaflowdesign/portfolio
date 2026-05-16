@@ -2,43 +2,44 @@
 const faqs = [
   {
     question: 'Jak wygląda proces współpracy?',
-    answer: 'Współpracę zaczynamy od rozmowy, podczas której poznajemy Twoje potrzeby, cele oraz oczekiwania wobec strony. Następnie przygotowuję koncepcję i czekam na Twoje uwagi. Po akceptacji przechodzę do realizacji, dbając o każdy detal — zarówno wizualny, jak i techniczny.',
+    answer: 'Współpracę zaczynamy od rozmowy, podczas której poznajemy Twoje potrzeby, cele oraz oczekiwania wobec strony. Następnie przygotowujemy koncepcję i czekamy na Twoje uwagi. Po akceptacji przechodzimy do realizacji, dbając o każdy detal — zarówno wizualny, jak i techniczny.',
   },
   {
     question: 'Ile trwa realizacja projektu?',
-    answer: 'Prosta strona wizytówkowa to zazwyczaj 1–2 tygodnie. Bardziej rozbudowane projekty zajmują 3–6 tygodni. Czas realizacji zależy też od tego, jak szybko dostarczysz materiały — treści, zdjęcia, logotyp.',
+    answer: 'Prosta strona wizytówkowa to zazwyczaj 1–2 tygodni. Bardziej rozbudowane projekty zajmują do 3 tygodni. Czas realizacji zależy też od tego, jak szybko dostarczone zostaną materiały — treści, zdjęcia, logotyp.',
   },
   {
     question: 'Czy strona będzie działać na urządzeniach mobilnych?',
-    answer: 'Tak, wszystkie strony są w pełni responsywne — wyglądają i działają dobrze na smartfonach, tabletach i komputerach. Projektuję metodą mobile-first, co gwarantuje dobre doświadczenie na każdym urządzeniu.',
+    answer: 'Tak, wszystkie strony są w pełni responsywne — wyglądają i działają dobrze na smartfonach, tabletach i komputerach. Projektowane są metodą mobile-first, co gwarantuje dobre doświadczenie na każdym urządzeniu.',
   },
   {
     question: 'Ile kosztuje strona internetowa?',
-    answer: 'Cena zależy od zakresu projektu. Każdy projekt wyceniam indywidualnie po rozmowie o potrzebach — napisz do mnie, a otrzymasz bezpłatną wycenę bez żadnych zobowiązań.',
+    answer: 'Cena zależy od zakresu projektu. Każdy projekt wyceniamy indywidualnie po rozmowie o potrzebach — napisz do nas, a otrzymasz bezpłatną wycenę bez żadnych zobowiązań.',
   },
   {
     question: 'Czy zadbasz o SEO?',
-    answer: 'Każda strona zawiera podstawową optymalizację SEO: poprawną strukturę nagłówków, meta tagi, Open Graph, mapę witryny oraz szybkie ładowanie. Na życzenie mogę przeprowadzić bardziej rozbudowaną optymalizację pod konkretne frazy kluczowe.',
+    answer: 'Każda strona zawiera podstawową optymalizację SEO: poprawną strukturę nagłówków, meta tagi, Open Graph, mapę witryny oraz szybkie ładowanie. Na życzenie możemy przeprowadzić bardziej rozbudowaną optymalizację pod konkretne frazy kluczowe.',
   },
   {
     question: 'Czy będę mógł samodzielnie edytować treści?',
-    answer: 'Zależy od wybranego rozwiązania. Dla prostych stron mogę przygotować edytowalne pliki tekstowe lub zintegrować prosty CMS. Omówimy to przy planowaniu projektu.',
+    answer: 'Zależy od wybranego rozwiązania. Dla prostych stron możemy przygotować edytowalne pliki tekstowe lub zintegrować prosty CMS. Omówimy to przy planowaniu projektu.',
   },
 ];
 ---
 
-<section id="faq" class="mx-auto max-w-3xl px-6 py-24 md:py-36">
-  <header class="mb-14">
-    <p class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Pytania i odpowiedzi</p>
-    <h2 class="font-display text-3xl md:text-5xl font-bold text-white">Najczęściej zadawane pytania</h2>
-    <p class="mt-4 text-white/55">
+<section id="faq" class="mx-auto max-w-6xl px-6 py-16 md:py-20 xl:py-16 xl:min-h-[calc(100svh-80px)] xl:flex xl:flex-col xl:justify-center">
+  <div class="max-w-3xl mx-auto">
+  <header class="mb-10 text-center xl:text-left">
+    <p data-animate="fade-up" class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Pytania i odpowiedzi</p>
+    <h2 data-animate="fade-up" data-delay="100" class="font-display text-3xl md:text-5xl font-bold text-white">Najczęściej zadawane pytania</h2>
+    <p data-animate="fade-up" data-delay="200" class="mt-4 text-white/55">
       Masz pytania? W naszej sekcji FAQ znajdziesz szybkie odpowiedzi.
     </p>
   </header>
 
   <div class="divide-y divide-surface-border" id="faq-list">
     {faqs.map((faq, i) => (
-      <div class="faq-item py-6" data-index={i}>
+      <div class="faq-item py-6" data-index={i} data-animate="fade-up" data-delay={String(i * 80)}>
         <button class="faq-trigger flex items-center justify-between gap-6 py-1">
           <span class="faq-question text-base font-semibold text-white text-left">
             {faq.question}
@@ -56,6 +57,7 @@ const faqs = [
         </div>
       </div>
     ))}
+  </div>
   </div>
 </section>
 

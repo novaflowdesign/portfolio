@@ -25,7 +25,13 @@ html {
   color: #f1f1f1;
   font-family: "Inter", system-ui, sans-serif;
   scroll-behavior: smooth;
+  scroll-padding-top: 70px;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 *,
@@ -180,6 +186,31 @@ img {
 .orb-parallax {
   translate: calc(var(--px, 0) * 1px) calc(var(--py, 0) * 1px);
   transition: translate 1.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── Scroll animations ──────────────────────────────── */
+[data-animate] {
+  opacity: 0;
+  transition:
+    opacity  0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate="fade-up"]    { transform: translateY(32px); }
+[data-animate="fade-left"]  { transform: translateX(28px); }
+[data-animate="fade-right"] { transform: translateX(-28px); }
+[data-animate="fade"]       { /* opacity only */ }
+
+[data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* ── FAQ accordion ───────────────────────────────────── */

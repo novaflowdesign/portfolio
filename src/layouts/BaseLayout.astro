@@ -63,6 +63,27 @@ const fullTitle = title === 'NovaFlowDesign' ? title : `${title} | NovaFlowDesig
   </body>
 
   <script>
+    /* Scroll animations — IntersectionObserver */
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ isIntersecting, target }) => {
+          if (!isIntersecting) return;
+          const delay = Number((target as HTMLElement).dataset.delay ?? 0);
+          setTimeout(() => (target as HTMLElement).classList.add('in-view'), delay);
+          io.unobserve(target);
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
+  </script>
+
+  <script>
+    /* Usuwa hash z URL gdy strona załadowała się z hashem (nawigacja z podstrony) */
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname);
+    }
+
     /* Przechwytuje kliknięcia w linki #hash — płynne przewijanie bez hash w URL */
     document.addEventListener('click', (e) => {
       const anchor = (e.target as Element).closest('a[href^="#"]');
@@ -70,7 +91,10 @@ const fullTitle = title === 'NovaFlowDesign' ? title : `${title} | NovaFlowDesig
       const href = anchor.getAttribute('href');
       if (!href || href === '#') return;
       const target = document.querySelector(href);
-      if (!target) return;
+      if (!target) {
+        window.location.href = '/' + href;
+        return;
+      }
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth' });
       history.replaceState(null, '', window.location.pathname);

@@ -8,11 +8,11 @@ const projects = allProjects
   .slice(0, 6);
 ---
 
-<section id="realizacje" class="mx-auto max-w-6xl px-6 py-24 md:py-36">
+<section id="realizacje" class="mx-auto max-w-6xl px-6 py-16 md:py-20 xl:py-8 xl:min-h-[calc(100svh-80px)] xl:flex xl:flex-col xl:justify-center">
   <div class="text-center mb-14">
-    <p class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Portfolio</p>
-    <h2 class="font-display text-3xl md:text-5xl font-bold text-white">Realizacje</h2>
-    <p class="mt-3 text-white/55 max-w-lg mx-auto">
+    <p data-animate="fade-up" class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Portfolio</p>
+    <h2 data-animate="fade-up" data-delay="100" class="font-display text-3xl md:text-5xl font-bold text-white">Realizacje</h2>
+    <p data-animate="fade-up" data-delay="200" class="mt-3 text-white/55 max-w-lg mx-auto">
       Projekty oparte na przemyślanej strukturze i spójnym designie.
     </p>
     {projects.length > 0 && (
@@ -29,15 +29,47 @@ const projects = allProjects
   </div>
 
   {projects.length > 0 ? (
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project) => (
-        <ProjectCard
-          title={project.data.title}
-          description={project.data.description}
-          slug={project.id}
-          thumbnail={project.data.thumbnail}
-          tags={project.data.tags}
-        />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 max-w-sm mx-auto md:max-w-none">
+      {projects.map((project, i) => (
+        <div data-animate="fade-up" data-delay={String(i * 100)}>
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            slug={project.id}
+            thumbnail={project.data.thumbnail}
+            tags={project.data.tags}
+          />
+        </div>
+      ))}
+
+      {[0, 1].map((_, i) => (
+        <div data-animate="fade-up" data-delay={String((projects.length + i) * 100)}>
+          <a
+            href="#kontakt"
+            class="group flex flex-col bg-surface-card border border-dashed border-surface-border rounded-2xl overflow-hidden hover:border-accent/30 hover:bg-accent/2 transition-all duration-300 h-full"
+          >
+            <div class="aspect-video bg-surface-elevated flex items-center justify-center">
+              <div class="w-14 h-14 rounded-full border border-dashed border-white/10 group-hover:border-accent/30 flex items-center justify-center transition-colors duration-300">
+                <svg class="w-6 h-6 text-white/15 group-hover:text-accent/50 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+            </div>
+            <div class="flex flex-col flex-1 p-5 md:p-7 gap-3">
+              <p class="text-xs font-semibold uppercase tracking-[0.15em] text-white/20 group-hover:text-accent/50 transition-colors duration-300 font-display">Twój projekt</p>
+              <h2 class="font-display text-xl font-bold text-white/25 group-hover:text-white/45 transition-colors duration-300 leading-snug">
+                Tu może być Twój projekt
+              </h2>
+              <p class="text-sm text-white/20 leading-relaxed">Skontaktuj się z nami — omówimy szczegóły i bezpłatnie wycenimy projekt.</p>
+              <span class="mt-auto pt-4 text-sm font-medium text-accent/30 group-hover:text-accent transition-colors inline-flex items-center gap-1">
+                Skontaktuj się
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
       ))}
     </div>
   ) : (

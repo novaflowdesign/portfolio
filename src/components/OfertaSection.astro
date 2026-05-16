@@ -3,55 +3,55 @@ import Button from '@components/Button.astro';
 
 const services = [
   {
-    title: 'Strona wizytówkowa',
-    description: 'Prosta, elegancka strona prezentująca Twoją firmę lub ofertę. Idealna dla freelancerów, małych firm i specjalistów.',
+    title: 'Strona one-page',
+    description: 'Prosta, elegancka strona na jednym widoku — idealna dla freelancerów, specjalistów i marek osobistych, które chcą zaistnieć w sieci.',
     includes: [
-      'Do 5 podstron',
-      'Formularz kontaktowy',
       'Responsywny design',
+      'Szybkie ładowanie strony',
+      'Estetyczny, nowoczesny wygląd',
       'Optymalizacja SEO',
-      'Certyfikat SSL',
+      'Formularz kontaktowy',
     ],
   },
   {
     title: 'Strona firmowa',
-    description: 'Rozbudowana witryna dla firm, które chcą wyróżnić się w sieci i generować leady sprzedażowe.',
+    description: 'Rozbudowana witryna dla firm, które chcą wyróżnić się w sieci i przyciągać nowych klientów. Z panelem do samodzielnego zarządzania treścią.',
     includes: [
       'Do 10 podstron',
-      'Blog lub aktualności',
+      'Panel administracyjny (CMS)',
       'Integracja z Google Analytics',
-      'Optymalizacja Core Web Vitals',
-      'Wsparcie techniczne 30 dni',
+      'Rozbudowana struktura treści',
+      'Blog/aktualności',
     ],
     featured: true,
   },
   {
-    title: 'Sklep / Landing page',
-    description: 'Dedykowany projekt dopasowany do specyficznych potrzeb — sklep online, strona produktowa lub kampanijna.',
+    title: 'Strona premium',
+    description: 'Zaawansowany projekt dopasowany do specyficznych potrzeb biznesu — z dodatkowymi funkcjami, które automatyzują i usprawniają działanie firmy.',
     includes: [
-      'Projekt indywidualny',
+      'Dedykowane rozwiązanie dla Twojego biznesu',
       'Integracja z systemem płatności',
-      'Testy A/B ready',
-      'Analityka konwersji',
-      'Wsparcie techniczne 60 dni',
+      'Newsletter',
+      'Integracja z płatnościami',
+      'Formularz wieloetapowy',
     ],
   },
 ];
 ---
 
-<section id="oferta" class="mx-auto max-w-6xl px-6 py-24 md:py-36">
-  <header class="mb-16 text-center max-w-2xl mx-auto">
-    <p class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Co oferuję</p>
-    <h2 class="font-display text-3xl md:text-5xl font-bold text-white">Oferta</h2>
-    <p class="mt-4 text-white/55">
+<section id="oferta" class="mx-auto max-w-6xl px-6 py-16 md:py-20 xl:py-16 xl:min-h-[calc(100svh-80px)] xl:flex xl:flex-col xl:justify-center">
+  <header class="mb-10 text-center max-w-2xl mx-auto">
+    <p data-animate="fade-up" class="text-xs font-semibold uppercase tracking-[0.2em] font-display mb-3 text-gradient">Co oferujemy</p>
+    <h2 data-animate="fade-up" data-delay="100" class="font-display text-3xl md:text-5xl font-bold text-white">Oferta</h2>
+    <p data-animate="fade-up" data-delay="200" class="mt-4 text-white/55">
       Każda strona jest dopasowana do potrzeb klienta. Poniżej orientacyjne pakiety — ostateczna wycena zależy od zakresu projektu.
     </p>
   </header>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {services.map((service) => (
-      <div class:list={[
-        'relative flex flex-col p-8 rounded-2xl border transition-colors',
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 max-w-md mx-auto lg:max-w-none">
+    {services.map((service, i) => (
+      <div data-animate="fade-up" data-delay={String(i * 120)} class:list={[
+        'relative flex flex-col p-6 md:p-8 lg:p-8 rounded-2xl border transition-colors',
         service.featured
           ? 'bg-surface-elevated border-accent/40 ring-1 ring-accent/20'
           : 'bg-surface-card border-surface-border hover:border-white/20',
@@ -86,6 +86,6 @@ const services = [
   </div>
 
   <p class="mt-10 text-center text-sm text-white/30">
-    Masz niestandardowy projekt? <a href="#kontakt" class="text-white/50 hover:text-white transition-colors underline underline-offset-2">Napisz do mnie</a> — wycenię indywidualnie.
+    Masz niestandardowy projekt? <a href="#kontakt" class="text-white/50 hover:text-white transition-colors underline underline-offset-2">Napisz do nas</a> — wycenimy indywidualnie.
   </p>
 </section>
